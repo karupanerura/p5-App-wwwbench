@@ -1,0 +1,19 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+
+use opts;
+use App::wwwbench;
+
+opts my $try_max       => { isa => 'Int', default => 1, comment => 'limit of benchmark try', alias => 'n' },
+     my $connect_max   => { isa => 'Int', default => 1, comment => 'max connection' },
+     my $url           => { isa => 'Str', required => 1, comment => 'access URL' };
+#    my $Authorication => { isa => 'Str', comment => 'Authorication' };
+
+my $result = App::wwwbench->run(
+    try_max => $try_max,
+    connect_max => $connect_max,
+    url => $url,
+);
+
+print App::wwwbench->all_result_format($result);
