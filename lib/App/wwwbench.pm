@@ -4,33 +4,31 @@ use warnings;
 our $VERSION = '0.01';
 
 use Coro;
-use Coro::Select;
-use Furl::HTTP;
+use Coro::Semaphore;
+use FurlX::Coro::HTTP;
 use Time::HiRes;
 use List::Util qw/min max sum/;
 
 sub run {
     my($class, %args) = @_;
-    
+
     my $try_max     = $args{try_max};
     my $connect_max = $args{connect_max};
     my $url         = $args{url};
 
     my @times;
-    foreach my $i (0 .. $try_max-1) {
-        my @connection;
-        $times[$i] = [];
+    my $semaphore = Coro::Semaphore->new($connect_max);
+    my @connection;
 
-        my $ua = Furl::HTTP->new; 
-        push(@connection, async{
-            my $start = Time::HiRes::time;
-            my(undef, $code) = $ua->get($url);
-            my $end = Time::HiRes::time;
-            push(@{$times[$i]}, [$end, $start, $code]);
-        }) foreach(1 .. $connect_max);
+    my $ua = FurlX::Coro::HTTP->new;
+    push @connection => async{
+        my $start = Time::HiRes::time;
+        my(undef, $code) = $ua->get($url);
+        my $end   = Time::HiRes::time;
+        push @times => [$end, $start, $code];
+    } foreach(1 .. $try_max);
 
-        $_->join foreach(@connection);
-    }
+    $_->join foreach(@connection);
 
     return \@times;
 }
@@ -38,11 +36,7 @@ sub run {
 sub all_result_format {
     my($class, $times) = @_;
 
-    my $text = '';
-    foreach my $i (0 .. $#{$times}){
-        $text .= sprintf("[%d]\n", $i);
-        $text .= $class->result_format($times->[$i]);
-    }
+    my $text = $class->result_format($times);
 
     return $text;
 }
@@ -72,7 +66,7 @@ sub result_format {
 
 sub data_format {
     my($class, $times) = @_;
-    
+
     my @total         = @$times;
     my @total_times   = map { $_->[0] - $_->[1] } @total;
     my @success       = grep { $_->[2] == 200 }   @total;
