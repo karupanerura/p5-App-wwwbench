@@ -9,11 +9,3 @@ Makefile.old
 nytprof.out
 MANIFEST.bak
 *.sw[po]
-/App-wwwbench-*
-/.build
-/_build_params
-/Build
-/Build.bat
-!Build/
-!META.json
-!LICENSE
