@@ -1,0 +1,73 @@
+{
+   "abstract" : "hogehoge",
+   "author" : [
+      "Kenta Sato <karupa@cpan.org>"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "Minilla/v0.8.3, CPAN::Meta::Converter version 2.132661",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "App-wwwbench",
+   "no_index" : {
+      "directory" : [
+         "t",
+         "xt",
+         "inc",
+         "share",
+         "eg",
+         "examples",
+         "author",
+         "builder"
+      ]
+   },
+   "prereqs" : {
+      "build" : {
+         "requires" : {
+            "ExtUtils::MakeMaker" : "6.36",
+            "Test::More" : "0"
+         }
+      },
+      "configure" : {
+         "requires" : {
+            "CPAN::Meta" : "0",
+            "CPAN::Meta::Prereqs" : "0",
+            "Module::Build" : "0.38"
+         }
+      },
+      "develop" : {
+         "requires" : {
+            "Test::CPAN::Meta" : "0",
+            "Test::MinimumVersion" : "0.10108",
+            "Test::Pod" : "1.41",
+            "Test::Spellunker" : "v0.2.7"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "Coro" : "0",
+            "Furl" : "0",
+            "List::Util" : "0",
+            "Time::HiRes" : "0",
+            "opts" : "0"
+         }
+      }
+   },
+   "release_status" : "unstable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/karupanerura/p5-App-wwwbench/issues"
+      },
+      "homepage" : "https://github.com/karupanerura/p5-App-wwwbench",
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/karupanerura/p5-App-wwwbench.git",
+         "web" : "https://github.com/karupanerura/p5-App-wwwbench"
+      }
+   },
+   "version" : "0.01"
+}
