@@ -1,5 +1,5 @@
 requires 'Coro';
-requires 'Furl';
+requires 'FurlX::Coro';
 requires 'List::Util';
 requires 'Time::HiRes';
 requires 'opts';
