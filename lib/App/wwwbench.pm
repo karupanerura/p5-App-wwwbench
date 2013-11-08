@@ -83,9 +83,11 @@ sub data_format {
 1;
 __END__
 
+=pod
+
 =head1 NAME
 
-App::wwwbench -
+App::wwwbench - hogehoge
 
 =head1 SYNOPSIS
 
@@ -93,7 +95,7 @@ App::wwwbench -
 
 =head1 DESCRIPTION
 
-App::wwwbench is
+App::wwwbench is hogehoge
 
 =head1 AUTHOR
 
