@@ -1,9 +1,5 @@
 use inc::Module::Install;
 name 'App-wwwbench';
-all_from 'lib/App/wwwbench.pm';
-readme_from 'lib/App/wwwbench.pm';
-readme_pod_from 'lib/App/wwwbench.pm';
-githubmeta;
 
 requires 'opts';
 requires 'Coro';
@@ -16,6 +12,7 @@ author_tests 'xt';
 
 install_script 'script/wwwbench';
 build_requires 'Test::More';
-auto_set_repository;
-auto_include;
+
+all_from 'lib/App/wwwbench.pm';
+
 WriteAll;
